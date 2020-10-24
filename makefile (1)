@@ -1,0 +1,36 @@
+all : main
+
+CCC = g++
+CCFLAGS = -O3 -std=c++11
+LIBS = -lm
+TARGETDIR =.
+CPPFLAGS += \
+	-I.
+
+OBJS2 = \
+	$(TARGETDIR)/estadual.o \
+	$(TARGETDIR)/main.o \
+	$(TARGETDIR)/hub.o \
+	$(TARGETDIR)/nacional.o \
+
+$(TARGETDIR)/main: $(OBJS2)
+	$(CCC)  $(CCFLAGS) -o $(TARGETDIR)/main $(OBJS2)
+
+$(TARGETDIR)/estadual.o: estadual.hpp estadual.cpp
+	$(CCC)  $(CCFLAGS) $(CPPFLAGS) -c estadual.cpp -o $(TARGETDIR)/estadual.o
+
+$(TARGETDIR)/main.o: main.cpp
+	$(CCC)  $(CCFLAGS) $(CPPFLAGS) -c main.cpp -o $(TARGETDIR)/main.o
+
+$(TARGETDIR)/hub.o: hub.hpp hub.cpp 
+	$(CCC)  $(CCFLAGS) $(CPPFLAGS) -c hub.cpp -o $(TARGETDIR)/hub.o
+
+$(TARGETDIR)/nacional.o: nacional.hpp nacional.cpp
+	$(CCC)  $(CCFLAGS) $(CPPFLAGS) -c nacional.cpp -o $(TARGETDIR)/nacional.o
+
+clean:
+	$(RM)\
+	$(TARGETDIR)/estadual.o \
+	$(TARGETDIR)/main.o \
+	$(TARGETDIR)/hub.o \
+	$(TARGETDIR)/nacional.o
